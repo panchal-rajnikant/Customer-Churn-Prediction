@@ -4,14 +4,14 @@ le = LabelEncoder()
 from sklearn.model_selection import train_test_split
 
 def preprocess():
-    df = pd.read_csv("../data/customer_churn.csv")
+    df = pd.read_csv("data/customer_churn.csv")
 
     # check missing values
     print(df.isnull().sum())
 
     # convert into numeric
     df["Monthly Charges"]= pd.to_numeric(
-        df["MonthlyCharges"],
+        df["Monthly Charges"],
         errors="coerce"
     )
     # fill missing values with median
