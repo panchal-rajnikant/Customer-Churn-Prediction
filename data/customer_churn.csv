@@ -1,0 +1,36 @@
+CustomerID,Age,Tenure,Monthly Charges,Contract,Churn
+1001,25,2,90,Month-to-month,Yes
+1002,35,48,40,Two year,No
+1003,28,1,25,Month-to-month,No
+1004,30,1,100,Month-to-month,Yes
+1005,45,60,30,Two year,No
+1006,29,3,95,Month-to-month,Yes
+1007,38,24,55,One year,No
+1008,50,72,25,Two year,No
+1009,27,6,85,Month-to-month,Yes
+1010,24,48,35,Month-to-month,Yes
+1011,42,36,45,Two year,No
+1012,24,1,105,Month-to-month,Yes
+1013,31,8,80,Month-to-month,Yes
+1014,46,54,35,Two year,No
+1015,37,15,70,One year,No
+1016,28,4,92,Month-to-month,Yes
+1017,41,30,50,Two year,No
+1018,34,10,78,One year,No
+1019,26,2,98,Month-to-month,Yes
+1020,48,66,28,Two year,No
+1021,39,20,60,One year,No
+1022,32,5,88,Month-to-month,Yes
+1023,44,42,38,Two year,No
+1024,29,9,82,Month-to-month,Yes
+1025,36,14,68,One year,No
+1026,51,84,22,Two year,No
+1027,23,1,110,Month-to-month,Yes
+1028,43,27,52,One year,No
+1029,47,58,33,Two year,No
+1030,30,7,86,Month-to-month,Yes
+1031,52,2,95,Two year,No
+1032,33,18,65,One year,No
+1033,39,60,85,Two year,Yes
+1034,40,12,75,One year,No
+1035,45,24,98,One year,Yes
