@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
+from sklearn.model_selection import train_test_split
 
 def preprocess():
     df = pd.read_csv("../data/customer_churn.csv")
@@ -28,4 +29,6 @@ def preprocess():
     X = df.drop("Churn", axis=1)
     y = df["Churn"]
 
-    return X, y
+    X_train, y_train, X_test, y_test = train_test_split(X, y, test_size=0.25, random_state=42, stratify=y )
+
+    return X_train, y_train, X_test, y_test
