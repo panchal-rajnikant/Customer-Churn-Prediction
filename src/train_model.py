@@ -4,13 +4,13 @@ from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 
-def train(X_train, y_train, X_test, y_test):
+def train(X_train, y_train):
 
     # model
     lr = LogisticRegression(
         max_iter=1000 
     )
-
+   
     dt = DecisionTreeClassifier(random_state=42)
 
     rf = RandomForestClassifier(
@@ -29,6 +29,12 @@ def train(X_train, y_train, X_test, y_test):
         random_state=42,
         eval_metric="logloss"
     )
+
+    lr.fit(X_train, y_train)
+    dt.fit(X_train, y_train)
+    rf.fit(X_train, y_train)
+    gb.fit(X_train, y_train)
+    xgb.fit(X_train, y_train)
 
     models = {
         "Logistic Regression": lr,
