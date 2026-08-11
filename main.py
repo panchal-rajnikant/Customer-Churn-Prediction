@@ -1,4 +1,5 @@
 from src import data_preprocessing, train_model, predict, evaluate_model
+import joblib
 
 models = {}
 
@@ -15,5 +16,19 @@ predictions = predict.predictions(models, X_test)
 # Model Evaluation
 results  = evaluate_model.evaluate(predictions, y_test)
 print(results)
+
+# Sort by the metric priority you want
+best_row = results.sort_values(
+    by=["F1 Score", "Recall", "Accuracy"],
+    ascending=[False, False, False]
+).iloc[0]
+
+# model name selection
+best_model_name = best_row["Model"]
+best_model = models[best_model_name]
+
+# save the best model
+joblib.dump(best_model, "models/best_model.pkl")
+
 
 
