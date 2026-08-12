@@ -1,6 +1,5 @@
 from fastapi import FastAPI, HTTPException
 import pandas as pd
-import joblib
 import uvicorn
 # from models import Customer
 from routes import router
