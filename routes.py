@@ -1,6 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from models.customer import Customer
 import pandas as pd
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # API Imports
 from src.predictions.prediction import predict as predict_model
@@ -16,6 +19,12 @@ def home():
 
 @router.post("/predict")
 def predict(customer: Customer):
-
+    logger.info("API Request for Prediction received")
     result = predict_model(customer)
-    return {"prediction": int(result)}
+    return result
+
+@router.get("/health")
+def health_check():
+    return {
+        "status": "healthy"
+    }

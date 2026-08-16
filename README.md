@@ -1,27 +1,97 @@
-# Customer Churn Prediction using maschine learning
+# Customer Churn Prediction
 
-This project tells whether customer is likely to leaves a telecom company using machine learning classification algorithm.
+Predict whether a telecom customer will churn using multiple machine learning pipelines. The project trains and compares several models, selects the best-performing pipeline by F1 score, and exposes a simple prediction API.
 
-The project compares the multiple machine learning model and selects the best performing model based on evaluation matrics.
+## Dataset
 
-# Dataset 
+The dataset is located at `data/customer_churn.csv` and includes these columns:
 
-Dataset contains customer information such as
+- `CustomerID`
+- `Age`
+- `Tenure`
+- `Monthly Charges`
+- `Contract` (e.g. `Month-to-month`, `One year`, `Two year`)
+- `Churn` (target: `Yes` / `No`)
 
-- CustomerID
-- Age
-- Tenure
-- Monthly Charges
-- Contract
-- Churn
+## Technologies
 
-Target Variable:  Churn
+- Python
+- pandas
+- scikit-learn
+- xgboost
 
-# Technologies
+## Installation
 
-    Python
-    Pandas
-    Scikit-Learn
-    XGBoost
+Install requirements:
 
-# Models
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+
+- Train and evaluate models (from project root):
+
+```bash
+python main.py
+```
+
+- Run the FastAPI server:
+
+```bash
+uvicorn app:app --reload
+```
+
+The API provides a `/predict` POST endpoint that accepts a JSON body matching the input schema: `Age`, `Tenure`, `Monthly_Charges`, `Contract`.
+
+### Example request
+
+POST /predict
+
+```json
+{
+    "Age": 25,
+    "Tenure": 3,
+    "Monthly_Charges": 90.0,
+    "Contract": "Month-to-month"
+}
+```
+
+### Example response
+
+```json
+{
+    "prediction": 1
+}
+```
+
+> Note: the exact response schema depends on the API implementation; by default the route returns only the predicted label.
+
+## Models
+
+Implemented and compared pipelines:
+
+- Logistic Regression
+- Decision Tree
+- Random Forest Classifier
+- Gradient Boosting
+- Extreme Gradient Boosting (XGBoost)
+
+## Training & Outputs
+
+- The training flow is in `main.py`. The best model is saved to `models/best_model.pkl`.
+- Evaluation metrics: Accuracy, Precision, Recall, F1 score.
+
+## Configuration
+
+Store project-wide constants (feature lists, default paths, hyperparameters) in a dedicated module such as `src/constants.py` or `src/config.py` and import from `src` modules.
+
+## Contributing
+
+Contributions are welcome. Open an issue or submit a pull request with a short description of the change.
+
+## License
+
+Add a `LICENSE` file or include license terms here.
+
+
