@@ -3,7 +3,7 @@ from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
 from sklearn.model_selection import train_test_split
 from pathlib import Path
-
+from src.logger import log_event
 
 def preprocess():
     base_dir = Path(__file__).resolve().parents[1]
@@ -35,6 +35,8 @@ def preprocess():
 
     X = df.drop("Churn", axis=1)
     y = df["Churn"].astype(int)
+
+    log_event("splitting data into training and testing")
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42, stratify=y)
 
     return X_train, X_test, y_train, y_test

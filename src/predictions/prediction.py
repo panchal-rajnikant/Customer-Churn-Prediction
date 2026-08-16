@@ -1,13 +1,11 @@
 import joblib
 import pandas as pd
 from models.customer import Customer
-import logging
 from fastapi import HTTPException
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+from src.logger import log_event
 
 def predict(customer: Customer):
-    logger.info("Prediction request received")
+    log_event("Prediction request received")
     model = joblib.load("models/best_model.pkl")
     
     df = pd.DataFrame([{
@@ -34,7 +32,7 @@ def predict(customer: Customer):
 
         confidence = probabilities[int(prediction)]
 
-        logger.info(
+        log_event(
             "Prediction successful: %s, confidence: %.2f",
             prediction,
             confidence
@@ -44,7 +42,7 @@ def predict(customer: Customer):
             "confidence": round(float(confidence), 4)
         }
     except Exception as e:
-        logger.error("Prediction failed: %s", e)
+        log_event("Prediction failed: %s", e)
 
     raise HTTPException(
         status_code=500,

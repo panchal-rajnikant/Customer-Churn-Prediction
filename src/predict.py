@@ -1,4 +1,5 @@
 import time
+from src.logger import log_event
 
 def predictions(models, X_test):
 
@@ -13,4 +14,5 @@ def predictions(models, X_test):
                     # train_time: train_time
                 })
     
+    log_event("prediction_completed")
     return predictions

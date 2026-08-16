@@ -1,7 +1,9 @@
 import pandas as pd
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from src.logger import log_event
 
 def evaluate(predictions, y_test):
+    log_event("model evalution started")
     results = []
     for model in predictions:
          for name, pred in model.items():
@@ -14,4 +16,5 @@ def evaluate(predictions, y_test):
             })
 
     results_df = pd.DataFrame(results)
+    log_event("model evalution completed")
     return results_df

@@ -9,9 +9,10 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.feature_selection import SelectKBest, f_classif
 from sklearn.compose import ColumnTransformer
 from src.constants import numeric_features
+from src.logger import log_event
 
 def train(X_train, y_train):
-
+    log_event("model training started")
     
     # numerical data may contain missing values and may need scaling. 
     numeric_pipeline = Pipeline([
@@ -84,4 +85,5 @@ def train(X_train, y_train):
         "Gradient Boosting": pipeline_gb,
         "Extreme Gradient Boosting": pipeline_xgb
     }
+    log_event("model training completed")
     return models
