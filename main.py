@@ -15,6 +15,8 @@ predictions = predict.predictions(models, X_test)
 
 # Model Evaluation
 results  = evaluate_model.evaluate(predictions, y_test)
+print(results)
+log_event("Results: ", results)
 
 # Sort by the metric priority you want
 best_row = results.sort_values(

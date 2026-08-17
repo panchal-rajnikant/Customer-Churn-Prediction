@@ -7,4 +7,5 @@ xgboost
 joblib
 pydantic
 anyio
+pytest
 

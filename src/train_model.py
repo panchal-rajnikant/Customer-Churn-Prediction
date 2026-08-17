@@ -36,7 +36,7 @@ def train(X_train, y_train):
     pipeline_lr = Pipeline([
         ("preprocessor", preprocessor),
         ("selector", selector),
-        ("model", LogisticRegression(max_iter=1000))
+        ("model", LogisticRegression(class_weight="balanced", max_iter=1000))
     ])
     pipeline_dt = Pipeline([
         ("preprocessor", preprocessor),
