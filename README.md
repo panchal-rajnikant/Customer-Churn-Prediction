@@ -67,6 +67,17 @@ POST /predict
 
 > Note: the exact response schema depends on the API implementation; by default the route returns only the predicted label.
 
+## Tests
+
+Run the unit test suite (from the project root):
+
+```bash
+pip install -r requirements.txt
+pytest -q
+```
+
+Tests include schema validation checks for the API request/response and additional unit tests under `tests/`.
+
 ## Models
 
 Implemented and compared pipelines:
