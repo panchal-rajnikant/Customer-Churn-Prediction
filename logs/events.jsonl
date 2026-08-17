@@ -1,0 +1,18 @@
+{"event": "Checking for missing values:", "data": "CustomerID         0\nAge                0\nTenure             0\nMonthly Charges    0\nContract           0\nChurn              0\ndtype: int64"}
+{"event": "Check data is balaced or imbalanced: ", "data": "Churn\nNo     20\nYes    15\nName: count, dtype: int64"}
+{"event": "splitting data into training and testing"}
+{"event": "model training started"}
+{"event": "model training completed"}
+{"event": "prediction_completed"}
+{"event": "model evalution started"}
+{"event": "model evalution completed"}
+{"event": "Saved Best model :", "data": "Pipeline(steps=[('preprocessor',\n                 ColumnTransformer(transformers=[('num',\n                                                  Pipeline(steps=[('imputer',\n                                                                   SimpleImputer(strategy='median')),\n                                                                  ('scaler',\n                                                                   StandardScaler())]),\n                                                  ['Age', 'Tenure',\n                                                   'Monthly Charges'])])),\n                ('selector', SelectKBest(k=3)),\n                ('model', LogisticRegression(max_iter=1000))])"}
+{"event": "Checking for missing values:", "data": "CustomerID         0\nAge                0\nTenure             0\nMonthly Charges    0\nContract           0\nChurn              0\ndtype: int64"}
+{"event": "Check data is balaced or imbalanced: ", "data": "Churn\nNo     20\nYes    15\nName: count, dtype: int64"}
+{"event": "splitting data into training and testing"}
+{"event": "model training started"}
+{"event": "model training completed"}
+{"event": "prediction_completed"}
+{"event": "model evalution started"}
+{"event": "model evalution completed"}
+{"event": "Saved best_model.pkl:"}
