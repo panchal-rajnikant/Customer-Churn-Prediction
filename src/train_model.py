@@ -28,7 +28,7 @@ def train(X_train, y_train):
     # Feature selection
     selector = SelectKBest(
         score_func=f_classif,
-        k=10
+        k=3
     )
 
     # model

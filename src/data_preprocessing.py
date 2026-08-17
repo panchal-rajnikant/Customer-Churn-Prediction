@@ -11,7 +11,10 @@ def preprocess():
     df = pd.read_csv(csv_path)
 
     # check missing values
-    print(df.isnull().sum())
+    log_event("Checking for missing values:", df.isnull().sum())
+
+    # Check for imbalaced data 
+    log_event("Check data is balaced or imbalanced: ", df["Churn"].value_counts())
 
     # convert into numeric
     df["Monthly Charges"]= pd.to_numeric(
