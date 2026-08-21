@@ -3,6 +3,7 @@ import pandas as pd
 from models.customer import Customer
 from fastapi import HTTPException
 from src.logger import log_event
+import time
 
 def predict(customer: Customer):
     log_event("Prediction request received")
@@ -25,21 +26,23 @@ def predict(customer: Customer):
         # prediction = model.predict(X)[0]
         # logger.info("Prediction completed successfully")
         # # return prediction
-
+        start_time = time.perf_counter()
         prediction =model.predict(X)[0]
 
         probabilities = model.predict_proba(X)[0]
 
         confidence = probabilities[int(prediction)]
-
+        latency = time.perf_counter() - start_time
         log_event(
             "Prediction successful: %s, confidence: %.2f",
             prediction,
-            confidence
+            confidence,
+            latency * 1000
         )
         return {
             "prediction": int(prediction),
-            "confidence": round(float(confidence), 4)
+            "confidence": round(float(confidence), 4),
+            "latency_ms": round(latency * 1000, 2)
         }
     except Exception as e:
         log_event("Prediction failed: %s", e)

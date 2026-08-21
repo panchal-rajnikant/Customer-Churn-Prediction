@@ -1,9 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from models.customer import Customer
-import pandas as pd
 from src.logger import log_event
 # API Imports
 from src.predictions.prediction import predict as predict_model
+import json
+from pathlib import Path
 
 router = APIRouter()
 
@@ -22,6 +23,12 @@ def predict(customer: Customer):
 
 @router.get("/health")
 def health_check():
+    base_dir = Path(__file__).resolve().parents[0]
+    json_path = base_dir / "models" / "model_metadata.json"
+    with open(json_path, "r") as f:
+        metadata = json.load(f)
+
     return {
-        "status": "healthy"
+        "status": "healthy",
+        "model_version": metadata["model_version"]
     }

@@ -1,0 +1,13 @@
+{
+    "model_version": "1.0.0",
+    "model_name": "customer_churn_model",
+    "algorithm": "LogisticRegression",
+    "training_date": "2026-08-21",
+    "features": [
+        "age",
+        "tenure",
+        "monthly_charges",
+        "gender",
+        "contract"
+    ]
+}

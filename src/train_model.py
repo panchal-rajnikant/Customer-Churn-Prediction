@@ -10,6 +10,7 @@ from sklearn.feature_selection import SelectKBest, f_classif
 from sklearn.compose import ColumnTransformer
 from src.constants import numeric_features
 from src.logger import log_event
+import pandas as pd
 
 def train(X_train, y_train):
     log_event("model training started")
@@ -78,6 +79,21 @@ def train(X_train, y_train):
     pipeline_gb.fit(X_train, y_train)
     pipeline_xgb.fit(X_train, y_train)
 
+    feature_names = pipeline_rf.named_steps["preprocessor"].get_feature_names_out()
+    print("Feature Names :",feature_names)
+
+    importance = pipeline_rf.named_steps["model"].feature_importances_
+    feature_importance = pd.DataFrame({
+        "feature": feature_names,
+         "importance": importance
+    })
+
+    feature_importance = feature_importance.sort_values(
+    "importance",
+    ascending=False
+    )
+
+    print("feature_importance :", feature_importance)
     models = {
         "Logistic Regression": pipeline_lr,
         "Decision Tree": pipeline_dt,
