@@ -5,6 +5,12 @@ from fastapi import HTTPException
 from src.logger import log_event
 import time
 
+metrics = {
+    "total_predictions": 0,
+    "total_errors": 0,
+    "total_latency_ms": 0.0
+}
+
 def predict(customer: Customer):
     log_event("Prediction request received")
     model = joblib.load("models/best_model.pkl")
@@ -39,6 +45,9 @@ def predict(customer: Customer):
             confidence,
             latency * 1000
         )
+
+        metrics["total_predictions"] += 1
+        metrics["total_latency_ms"] += latency
         return {
             "prediction": int(prediction),
             "confidence": round(float(confidence), 4),
@@ -46,6 +55,7 @@ def predict(customer: Customer):
         }
     except Exception as e:
         log_event("Prediction failed: %s", e)
+        metrics["total_errors"] += 1
 
     raise HTTPException(
         status_code=500,
